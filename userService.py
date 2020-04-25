@@ -30,8 +30,8 @@ class userService(object):
         get_data = self.checkCredentials()
         if get_data:
             print("\nWelcome ",get_data['role'])
-            print("Logged in as user email: ",get_data['email'])
-            print("\n",get_data['email'], "Meminjam buku :", get_history['peminjaman_buku'],'\nPada tanggal', get_history['tanggal_pinjam'])
+            print("Logged in as user email: ",get_data['email'], "\n")
+            print(get_data ['email'],"Meminjam buku :", get_history['peminjaman_buku'],"\nPada tanggal", get_history['tanggal_pinjam'])
         else:
             print("\nInvalid Login!\n")
 
@@ -45,14 +45,17 @@ class userService(object):
                     return False
 
     def checkhistory(self):
-        for a in self.history:
-            for b in a:
-                if a == self.email:
-                    get_history_buku = self.history[a]
-                    return get_history_buku
-'''
-    def getinside (self):
-        get_history=self.checkhistory()
-        get_history['peminjaman_buku']=a
-        for a in b:
-            for c in a:'''
+        for b in self.history:
+            if b == self.email:
+                get_history_buku = {}
+
+                get_history_buku.update(tanggal_pinjam = self.history[b]['tanggal_pinjam'])
+
+                str_buku = '\n'
+                
+                for c in self.history[b]['peminjaman_buku']:
+                    str_buku += c + "\n"
+                
+                get_history_buku.update(peminjaman_buku = str_buku)
+                
+                return get_history_buku
