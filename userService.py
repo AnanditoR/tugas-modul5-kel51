@@ -45,7 +45,14 @@ class userService(object):
                     return False
 
     def checkhistory(self):
-        for b in self.history:
-            if b == self.email:
-                get_history_buku = self.history[b]
-                return get_history_buku
+        for a in self.history:
+            for b in a:
+                if a == self.email:
+                    get_history_buku = self.history[a]
+                    return get_history_buku
+'''
+    def getinside (self):
+        get_history=self.checkhistory()
+        get_history['peminjaman_buku']=a
+        for a in b:
+            for c in a:'''
