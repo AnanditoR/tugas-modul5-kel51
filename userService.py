@@ -26,22 +26,26 @@ class userService(object):
            }
        }
     def login(self):
-        get_history = self.history
+        get_history = self.checkhistory()
         get_data = self.checkCredentials()
         if get_data:
             print("\nWelcome ",get_data['role'])
             print("Logged in as user email: ",get_data['email'])
-            print("\n",get_data['email'], "Meminjam buku :")
+            print("\n",get_data['email'], "Meminjam buku :", get_history['peminjaman_buku'],'\nPada tanggal', get_history['tanggal_pinjam'])
         else:
             print("\nInvalid Login!\n")
 
     def checkCredentials(self):
-        for value in self.data:
-            if value == self.email:
-                get_data_user = self.data[value]
+        for a in self.data:
+            if a == self.email:
+                get_data_user = self.data[a]
                 if self.password == get_data_user['password']:
                     return get_data_user
                 else:
                     return False
 
-
+    def checkhistory(self):
+        for b in self.history:
+            if b == self.email:
+                get_history_buku = self.history[b]
+                return get_history_buku
